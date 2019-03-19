@@ -1,0 +1,174 @@
+package com.sunlong.collection;
+
+import java.util.*;
+
+public class MyCollection {
+
+
+    public static void main(String[] args) {
+        arrayList();
+//        hashMap();
+//        hashSet();
+//        treeSet();
+//         treeMap();
+//        String[] arr= {"s","a","f"};
+//        List<String> list  = Arrays.asList( arr );
+    }
+
+    //TreeMap
+    public static void treeMap() {
+        TreeMap<Integer, String> tm = new TreeMap<>();
+
+        tm.put( 1, "a" );
+        tm.put( 12, "l" );
+        tm.put( 31, "d" );
+        tm.put( 10, "c" );
+
+
+        Set<Map.Entry<Integer, String>> entrySet = tm.entrySet();
+        Iterator<Map.Entry<Integer, String>> entryIterator = entrySet.iterator();
+
+        while (entryIterator.hasNext()) {
+
+            Map.Entry<Integer, String> entry = entryIterator.next();
+            Integer key = entry.getKey();
+            String values = entry.getValue();
+
+            System.out.println( key + " " + values );
+        }
+
+        for (Map.Entry<Integer, String> entry : tm.entrySet()) {
+            Integer key = entry.getKey();
+            String values = entry.getValue();
+            System.out.println( key + " " + values );
+        }
+    }
+
+
+    //TreeSet集合遍历
+    public static void treeSet() {
+        TreeSet<String> treeSet = new TreeSet<>( new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                int num = s2.compareTo( s1 );
+
+                return num == 0 ? 1 : num;
+            }
+        } );
+        treeSet.add( "ad" );
+        treeSet.add( "ddd" );
+        treeSet.add( "as" );
+        treeSet.add( "nc" );
+        treeSet.add( "cssss" );
+        //通过迭代器
+        Iterator<String> it = treeSet.iterator();
+        while (it.hasNext()) {
+            System.out.println( it.next() );
+        }
+        //通过增强for循环
+        for (String string : treeSet) {
+            System.out.println( string );
+        }
+    }
+
+    //HashSet遍历方法
+    public static void hashSet() {
+        HashSet<String> hashSet = new HashSet<>();
+
+        hashSet.add( "a" );
+        hashSet.add( "b" );
+        hashSet.add( "i" );
+        hashSet.add( "g" );
+
+        //通过迭代器迭代
+        Iterator<String> it = hashSet.iterator();
+        while (it.hasNext()) {
+            System.out.println( it.next() );
+        }
+        //通过增强for循环遍历
+        for (String values : hashSet) {
+            System.out.println( values );
+        }
+    }
+
+    //HashMap遍历方法
+    public static void hashMap() {
+        Map<Integer, String> map = new HashMap<>();
+
+        map.put( 0, "q" );
+        map.put( 1, "a" );
+        map.put( 2, "b" );
+        map.put( 5, "t" );
+        map.put( 3, "k" );
+
+        //根据键获取值
+        Set<Integer> keyset = map.keySet();     //获取所有键的值
+        //获取迭代器
+        Iterator<Integer> it = keyset.iterator();
+        while (it.hasNext()) {
+            Integer key = it.next();            //获取每一个键
+            String value = map.get( key );      //根据键获取值
+            System.out.println( key + " " + value );
+        }
+
+        //增强for循环遍历
+        for (Integer key : keyset) {
+            System.out.println( key + " " + map.get( key ) );
+        }
+
+
+        //根据键值对对象获取键和值
+        //Map.Entry说明Entry是Map的内部接口，将键和值封装成了Entry对象，并存储到Set集合中
+        Set<Map.Entry<Integer, String>> entrySet = map.entrySet();
+        //迭代器遍历
+        Iterator<Map.Entry<Integer, String>> iterator = entrySet.iterator();
+
+        while (it.hasNext()) {
+            //获取每一个Entry对象
+            Map.Entry<Integer, String> entry = iterator.next(); //父类引用指向子类对象
+            Integer key = entry.getKey();           //根据键值对对象获取键
+            String values = entry.getValue();       //根据键值对对象获取值
+
+            System.out.println( key + "" + values );
+        }
+        //增强for循环遍历
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println( entry.getKey() + " " + entry.getValue() );
+        }
+    }
+
+    //ArrayList遍历方法
+    public static void arrayList() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add( "a" );
+        list.add( "b" );
+        list.add( "a" );
+        list.add( "d" );
+        list.add( "e" );
+
+        //迭代器迭代
+        Iterator<String> it = list.iterator();
+        while (it.hasNext()) {
+            String values = it.next();
+            System.out.println( values );
+        }
+
+        System.out.println( "=====================" );
+        //增强for循环
+        for (String string : list) {
+            System.out.println( string );
+        }
+        System.out.println( "=====================" );
+        //通过索引遍历
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println( list.get( i ) );
+        }
+
+        System.out.println( "=====================" );
+        Object[] strings = list.toArray();
+
+        for (Object string : strings) {
+            System.out.println( string );
+        }
+    }
+}
